@@ -1,0 +1,53 @@
+﻿<Page x:Class="DeployKun.Deploy"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DeployKun"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="Deploy">
+
+    <Grid>
+        <Label x:Name="MsgLabel" Content="Label" HorizontalAlignment="Left" Height="25" Margin="30,10,0,0" VerticalAlignment="Top" Width="745" Visibility="Hidden"/>
+        <Button x:Name="ReadSetFile" Content="実行条件読込" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="30,55,0,0" Click="ReadSetFile_Click" TabIndex="10"/>
+        <CheckBox x:Name="SaveConditionCheckBox" Content="実行条件を保存" HorizontalAlignment="Left" Margin="144,58,0,0" VerticalAlignment="Top" Height="20" Click="SaveConditionCheckBox_Clicked" TabIndex="20"/>
+        <TextBox x:Name="ExecConditionName" HorizontalAlignment="Left" Height="19" Margin="267,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110" IsReadOnlyCaretVisible="True" TabIndex="30"/>
+        <Label x:Name="BinPathLabel" Content="移動元：Binフォルダーパス" HorizontalAlignment="Left" Margin="27,83,0,0" VerticalAlignment="Top" Height="19" Width="164" Padding="0"/>
+        <Label x:Name="FilePathLabel" Content="移動元：Webフォルダーパス" HorizontalAlignment="Left" Margin="27,129,0,0" VerticalAlignment="Top" Height="19" Width="164" Padding="0"/>
+        <Label x:Name="AppPathLabel" Content="移動先：アプリケーションパス" HorizontalAlignment="Left" Margin="27,178,0,0" VerticalAlignment="Top" Height="19" Width="164" Padding="0"/>
+        <TextBox x:Name="BinPathText" HorizontalAlignment="Left" Height="19" Margin="27,102,0,0" TextWrapping="Wrap" Text="BinPathText" VerticalAlignment="Top" Width="637" LostFocus="BinPathText_LostFocus" TabIndex="40"/>
+        <TextBox x:Name="FilePathText" HorizontalAlignment="Left" Height="19" Margin="27,148,0,0" TextWrapping="Wrap" Text="FilePath" VerticalAlignment="Top" Width="637" LostFocus="FilePathText_LostFocus" TabIndex="50"/>
+        <TextBox x:Name="AppPathText" HorizontalAlignment="Left" Height="19" Margin="27,197,0,0" TextWrapping="Wrap" Text="AppPathText" VerticalAlignment="Top" Width="637" LostFocus="AppPathText_LostFocus" TabIndex="60"/>
+        <Label x:Name="ExtensionLabel" Content="拡張子" HorizontalAlignment="Left" Margin="28,224,0,0" VerticalAlignment="Top" Height="19" Width="164" Padding="0" />
+        <CheckBox x:Name="Bin_Pdb_CheckBox" Content=".bin/.pdb" HorizontalAlignment="Left" Height="19" Margin="27,243,0,0" VerticalAlignment="Top" Width="87" TabIndex="70"/>
+        <CheckBox x:Name="Aspx_CheckBox" Content=".aspx" HorizontalAlignment="Left" Height="19" Margin="132,243,0,0" VerticalAlignment="Top" Width="87" TabIndex="80"/>
+        <CheckBox x:Name="Js_CheckBox" Content=".js" HorizontalAlignment="Left" Height="19" Margin="233,243,0,0" VerticalAlignment="Top" Width="87" TabIndex="90"/>
+        <Button x:Name="RefBinPathBtn" Content="参照" HorizontalAlignment="Left" Margin="669,102,0,0" VerticalAlignment="Top" Width="37" Click="RefBinPathBtn_Click" TabIndex="41"/>
+        <Button x:Name="RefFilePathBtn" Content="参照" HorizontalAlignment="Left" Margin="669,148,0,0" VerticalAlignment="Top" Width="37" Click="RefFilePathBtn_Click" TabIndex="51"/>
+        <Button x:Name="RefAppPathBtn" Content="参照" HorizontalAlignment="Left" Margin="669,197,0,0" VerticalAlignment="Top" Width="37" Click="RefAppPathBtn_Click" TabIndex="61"/>
+        <Label x:Name="TargetID" Content="機能ID" HorizontalAlignment="Left" Margin="26,268,0,0" VerticalAlignment="Top" Height="19" Width="164" Padding="0"/>
+        <TextBox x:Name="TagetIDText" HorizontalAlignment="Left" Height="19" Margin="26,287,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" TabIndex="100"/>
+        <Button x:Name="AddIDBtn" Content="機能ID追加" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="144,287,0,0" Click="AddIDBtn_Click" TabIndex="101"/>
+        <Button x:Name="DeleteIDBtn" Content="機能ID削除" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="144,312,0,0" Click="DeleteIDBtn_Click" TabIndex="102"/>
+        <ListBox x:Name="TargetIDList" HorizontalAlignment="Left" Height="63" Margin="26,337,0,0" VerticalAlignment="Top" Width="205" TabIndex="103">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding No}" Width="20"/>
+                        <TextBlock Text="{Binding ID}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="DeployBtn" Content="★ レッツ！デプロイ！ ★" HorizontalAlignment="Left" Height="37" Margin="26,458,0,0" VerticalAlignment="Top" Width="749" FontSize="24" Click="DeployBtn_Click" TabIndex="120"/>
+        <Image x:Name="DeployKun" Margin="494,243,104,108"/>
+        <CheckBox x:Name="GRReStart" Content="デプロイ後、GR再起動" HorizontalAlignment="Left" Height="19" Margin="26,410,0,0" VerticalAlignment="Top" Width="144" Click="GRReStart_Click" TabIndex="110"/>
+        <StackPanel HorizontalAlignment="Left" Height="24" Margin="30,429,0,0" VerticalAlignment="Top" Width="240" Orientation="Horizontal">
+            <RadioButton x:Name="Chrome" Content="Chrome" Height="18" Margin="0,0,10,0" TabIndex="111"/>
+            <RadioButton x:Name="Edge" Content="Edge" Height="18" Margin="0,0,10,0" TabIndex="112"/>
+            <RadioButton x:Name="EdgeIEMode" Content="Edge（IEモード）" Height="18" Margin="0,0,10,0" TabIndex="113"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
